@@ -64,9 +64,27 @@ total_elfs_in_group <- 3
 
 total_groups <- length(rucksacks) / total_elfs_in_group
 
+total_badge_priorities <- 0
+
 for (group in 1:total_groups) {
 
+  group_rucksacks <- rucksacks[((group-1)*total_elfs_in_group + 1):(group*total_elfs_in_group)]
 
+  for (item in strsplit(group_rucksacks[1], '')[[1]]) {
 
+    if (grepl(item, group_rucksacks[2]) & grepl(item, group_rucksacks[3])) {
+
+      print(paste0("item ", item, " in both rucksack 2 & 3: ", group_rucksacks[2], " - ", group_rucksacks[3]))
+
+      print(paste0("Priority of item: ", priority[item]))
+
+      total_badge_priorities <- total_badge_priorities + priority[item][[1]]
+
+      print(paste0("Latest budge sum: ", total_badge_priorities))
+
+      break
+    }
+
+  }
 
 }
