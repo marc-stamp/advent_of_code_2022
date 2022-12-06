@@ -35,3 +35,26 @@ for (position in total_unique_characters: length(signal_split)) {
 }
 
 position
+
+# === Part 2 ===
+
+# Repeat for 14 characters
+
+total_unique_characters <- 14
+
+for (position in total_unique_characters: length(signal_split)) {
+  print(position)
+  last_signals <- signal_split[(position - total_unique_characters + 1):position]
+  print(last_signals)
+
+  unique_last_signals <- unique(last_signals)
+
+  if (length(unique_last_signals) == total_unique_characters) {
+
+    print(paste0("First unique set of characters found at ", position, ": ", paste0(unique_last_signals, collapse = ', ')))
+    break
+  }
+
+}
+
+position
