@@ -10,7 +10,7 @@ rock_positions <- readLines(file)
 library(tidyverse)
 library(reshape2)
 
-# === part 1 ===
+# ==== part 1 ====
 
 # look at how many rocks fall
 
@@ -32,13 +32,13 @@ add_rocks <- function(matrix, first_rock_position, last_rock_position) {
   # if x equals, loop through y
   if (first_rock_position[1] == last_rock_position[1]) {
 
-    matrix[first_rock_position[1,2]:last_rock_position[1,2], first_rock_position[1,1]] <- '#'
+    matrix[(first_rock_position[1,2]+1):(last_rock_position[1,2]+1), first_rock_position[1,1]] <- '#'
 
   }
   # if y equals, loop through x
   if (first_rock_position[2] == last_rock_position[2]) {
 
-    matrix[first_rock_position[1,2], first_rock_position[1,1]:last_rock_position[1,1]] <- '#'
+    matrix[(first_rock_position[1,2]+1),first_rock_position[1,1]:last_rock_position[1,1]] <- '#'
 
   }
 
@@ -160,7 +160,7 @@ while(T) {
 
 print(paste0("Total grains of sand: ", sand_counter))
 
-# === Part 2 ===
+# ==== Part 2 ====
 
 # there is actually floor, how many grains of sand get up to 500,1
 sand_rock_grid_with_floor <- matrix('', nrow = 200, ncol = 800)
@@ -205,7 +205,7 @@ for (rocks in rock_positions) {
 }
 
 # make floor
-sand_rock_grid_with_floor[(max_y+2), ] = '#'
+sand_rock_grid_with_floor[(max_y+2+1), ] = '#'
 
 sand_counter <- 0
 
@@ -244,3 +244,4 @@ while(T) {
 }
 
 print(paste0("Total sand grains needed to reach top: ",sand_counter))
+
